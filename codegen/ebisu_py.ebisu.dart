@@ -25,11 +25,45 @@ void main() {
     ..doc = 'Support library for generating python code'
     ..libraries = [
       library('ebisu_py')
+      ..defaultMemberAccess = RO
+      ..imports = [
+        'package:id/id.dart',
+        'package:ebisu/ebisu.dart',
+      ]
       ..parts = [
+
+        part('py_entity')
+        ..classes = [
+          class_('py_entity')
+          ..mixins = [ 'Entity' ]
+          ..isAbstract = true
+          ..members = [
+            member('id')
+            ..type = 'Id'
+          ]
+        ],
+
+        part('py_member')
+        ..classes = [
+          class_('member')
+          ..extend = 'PyEntity'
+          ..members = [
+            member('init')
+            ..doc = 'Initialization for the member',
+            member('access')
+            ..type = 'Access',
+          ]
+        ],
+
         part('py_class')
         ..classes = [
           class_('class')
-        ]
+          ..extend = 'PyEntity'
+          ..members = [
+            member('members')..type = 'List<Members>'..classInit = [],
+          ]
+        ],
+
       ],
     ];
 
