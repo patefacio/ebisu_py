@@ -32,15 +32,48 @@ void main() {
       ]
       ..parts = [
 
+
+        part('py_core')
+        ..enums = [
+          enum_('access')
+          ..values = [
+            enumValue('ro')..doc = 'Read only',
+            enumValue('rw')..doc = 'Read/write - effectively public',
+            enumValue('wo')..doc = 'Write accessor but no read accessor',
+            enumValue('ia')..doc = 'Inaccessible',
+          ]
+        ],
+
         part('py_entity')
         ..classes = [
+
           class_('py_entity')
           ..mixins = [ 'Entity' ]
           ..isAbstract = true
           ..members = [
             member('id')
             ..type = 'Id'
-          ]
+          ],
+
+          class_('installation')
+          ..mixins = [ 'Entity' ]
+          ..members = [
+            member('packages')
+            ..type = 'List<Package>'..classInit = [],
+          ],
+
+          class_('package')
+          ..mixins = [ 'Entity' ]
+          ..members = [
+            member('modules')..classInit = [],
+          ],
+
+          class_('module')
+          ..mixins = [ 'Entity' ]
+          ..members = [
+            member('classes')..classInit = [],
+          ],
+
         ],
 
         part('py_member')
@@ -52,6 +85,8 @@ void main() {
             ..doc = 'Initialization for the member',
             member('access')
             ..type = 'Access',
+            member('type')
+            ..doc = 'Optional type for the member',
           ]
         ],
 
