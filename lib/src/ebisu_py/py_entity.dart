@@ -4,6 +4,9 @@ abstract class PyEntity extends Object with Entity {
   Id get id => _id;
 
   // custom <class PyEntity>
+
+  PyEntity(id) : _id = makeId(id);
+
   // end <class PyEntity>
 
   Id _id;

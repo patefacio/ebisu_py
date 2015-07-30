@@ -23,6 +23,9 @@ void main() {
     ..pubSpec.version = '0.0.1'
     ..rootPath = _topDir
     ..doc = 'Support library for generating python code'
+    ..testLibraries = ([
+      library('test_member')
+    ].map((l) => l..imports.add('../lib/ebisu_py.dart')).toList())
     ..libraries = [
       library('ebisu_py')
       ..defaultMemberAccess = RO
@@ -31,7 +34,6 @@ void main() {
         'package:ebisu/ebisu.dart',
       ]
       ..parts = [
-
 
         part('py_core')
         ..enums = [
@@ -86,7 +88,10 @@ void main() {
             member('access')
             ..type = 'Access',
             member('type')
+            ..access = IA
             ..doc = 'Optional type for the member',
+            member('vname')
+            ..doc = 'Variable name derived from *id*',
           ]
         ],
 
