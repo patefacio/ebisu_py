@@ -12,4 +12,7 @@ part 'src/ebisu_py/py_entity.dart';
 part 'src/ebisu_py/py_member.dart';
 
 // custom <library ebisu_py>
+
+String pydent(String text) => indentBlock(text, '    ');
+
 // end <library ebisu_py>

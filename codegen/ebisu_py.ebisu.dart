@@ -24,7 +24,8 @@ void main() {
     ..rootPath = _topDir
     ..doc = 'Support library for generating python code'
     ..testLibraries = ([
-      library('test_member')
+      library('test_member'),
+      library('test_codeblock'),
     ].map((l) => l..imports.add('../lib/ebisu_py.dart')).toList())
     ..libraries = [
       library('ebisu_py')
@@ -38,6 +39,7 @@ void main() {
         part('py_core')
         ..enums = [
           enum_('access')
+          ..doc = 'Set of access directives for members'
           ..values = [
             enumValue('ro')..doc = 'Read only',
             enumValue('rw')..doc = 'Read/write - effectively public',
@@ -50,6 +52,7 @@ void main() {
         ..classes = [
 
           class_('py_entity')
+          ..doc = 'Used to establish the tree of all python entities'
           ..mixins = [ 'Entity' ]
           ..isAbstract = true
           ..members = [
@@ -58,6 +61,7 @@ void main() {
           ],
 
           class_('installation')
+          ..doc = 'Top level entity for python code generation'
           ..mixins = [ 'Entity' ]
           ..members = [
             member('packages')
@@ -81,6 +85,9 @@ void main() {
         part('py_member')
         ..classes = [
           class_('member')
+          ..doc = '''
+An accessible data item in a class.
+'''
           ..extend = 'PyEntity'
           ..members = [
             member('init')
@@ -98,9 +105,12 @@ void main() {
         part('py_class')
         ..classes = [
           class_('class')
+          ..doc = 'A python class'
           ..extend = 'PyEntity'
           ..members = [
-            member('members')..type = 'List<Members>'..classInit = [],
+            member('members')
+            ..doc = 'The members of the class'
+            ..type = 'List<Members>'..classInit = [],
           ]
         ],
 

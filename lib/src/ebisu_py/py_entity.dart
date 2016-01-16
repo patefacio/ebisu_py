@@ -1,5 +1,6 @@
 part of ebisu_py.ebisu_py;
 
+/// Used to establish the tree of all python entities
 abstract class PyEntity extends Object with Entity {
   Id get id => _id;
 
@@ -12,6 +13,7 @@ abstract class PyEntity extends Object with Entity {
   Id _id;
 }
 
+/// Top level entity for python code generation
 class Installation extends Object with Entity {
   List<Package> get packages => _packages;
 

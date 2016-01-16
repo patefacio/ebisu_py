@@ -1,6 +1,8 @@
 part of ebisu_py.ebisu_py;
 
+/// A python class
 class Class extends PyEntity {
+  /// The members of the class
   List<Members> get members => _members;
 
   // custom <class Class>

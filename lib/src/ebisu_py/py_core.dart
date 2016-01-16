@@ -1,5 +1,6 @@
 part of ebisu_py.ebisu_py;
 
+/// Set of access directives for members
 enum Access {
   /// Read only
   ro,

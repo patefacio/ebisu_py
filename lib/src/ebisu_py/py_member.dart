@@ -1,5 +1,6 @@
 part of ebisu_py.ebisu_py;
 
+/// An accessible data item in a class.
 class Member extends PyEntity {
   /// Initialization for the member
   String get init => _init;
