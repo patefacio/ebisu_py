@@ -25,6 +25,7 @@ void main() {
     ..doc = 'Support library for generating python code'
     ..testLibraries = ([
       library('test_namer'),
+      library('test_class'),
       library('test_member'),
       library('test_codeblock'),
     ].map((l) => l..imports.add('../lib/ebisu_py.dart')).toList())
@@ -71,7 +72,11 @@ void main() {
                 ..members = [member('modules')..classInit = [],],
               class_('module')
                 ..mixins = ['Entity']
-                ..members = [member('classes')..classInit = [],],
+                ..members = [
+                  member('classes')..classInit = [],
+                  member('has_main')
+                    ..doc = 'If set a main section will be included',
+                ],
             ],
           part('py_member')
             ..classes = [
@@ -102,6 +107,7 @@ An accessible data item in a class.
                     ..doc = 'The members of the class'
                     ..type = 'List<Members>'
                     ..classInit = [],
+                  member('name')..access = RO,
                 ]
             ],
         ],

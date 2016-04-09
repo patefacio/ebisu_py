@@ -35,10 +35,17 @@ class Package extends Object with Entity {
 class Module extends Object with Entity {
   List get classes => _classes;
 
+  /// If set a main section will be included
+  String get hasMain => _hasMain;
+
   // custom <class Module>
+
+  get definition => brCompact([classes.map((c) => c.definition),]);
+
   // end <class Module>
 
   List _classes = [];
+  String _hasMain;
 }
 
 // custom <part py_entity>
