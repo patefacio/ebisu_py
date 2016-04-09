@@ -36,7 +36,6 @@ main([List<String> args]) {
     expect(nameAttribute(sampleId), 'one_two_three');
     expect(nameAttribute(sampleId, internal), '_one_two_three');
     expect(nameAttribute(sampleId, private), '__one_two_three');
-
   });
 
   test('library namer', () {

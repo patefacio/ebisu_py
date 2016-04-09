@@ -30,6 +30,8 @@ class PyNamer {
 
   String nameClass(Id id) => id.capCamel;
 
+  String nameMember(Id id) => id.snake;
+
   // end <class PyNamer>
 
 }
@@ -38,8 +40,10 @@ class PyNamer {
 
 nameFunction(id) => pyNamer.nameFunction(id);
 nameMethod(id) => pyNamer.nameMethod(id);
-nameAttribute(id, [NamingStyle namingStyle = public]) => pyNamer.nameAttribute(id, namingStyle);
+nameAttribute(id, [NamingStyle namingStyle = public]) =>
+    pyNamer.nameAttribute(id, namingStyle);
 nameConstant(id) => pyNamer.nameConstant(id);
 nameClass(id) => pyNamer.nameClass(id);
+nameMember(id) => pyNamer.nameMember(id);
 
 // end <part py_namer>

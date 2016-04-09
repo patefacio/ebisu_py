@@ -19,7 +19,7 @@ main([List<String> args]) {
 // custom <main>
 
   group('member definition', () {
-    final m = member('foo');
+    final m = member('foo')..doc = 'This is a foo';
     print(m.definition);
   });
 

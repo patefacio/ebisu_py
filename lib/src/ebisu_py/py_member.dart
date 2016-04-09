@@ -12,18 +12,16 @@ class Member extends PyEntity {
   /// If true member is class variable
   bool get isStatic => _isStatic;
 
-  /// Docstring for the member
-  String get doc => _doc;
-
   // custom <class Member>
 
   Member(id) : super(id) {
-    _vname = _id.snake;
+    _vname = nameMember(this.id);
   }
 
   get type => _type == null ? 'String' : _type;
 
-  get definition => brCompact([_reader, '$_vname # of type $type']);
+  get definition => brCompact(
+      [_reader, 'self.$vname = $vname', doc == null ? null : '"""$doc"""']);
 
   get _reader => _access == ro || _access == rw ? '# ${vname} reader' : null;
 
@@ -36,7 +34,6 @@ class Member extends PyEntity {
   String _type;
   String _vname;
   bool _isStatic = false;
-  String _doc;
 }
 
 // custom <part py_member>

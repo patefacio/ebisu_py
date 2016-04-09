@@ -90,7 +90,6 @@ An accessible data item in a class.
                   member('is_static')
                     ..doc = 'If true member is class variable'
                     ..init = false,
-                  member('doc')..doc = 'Docstring for the member',
                 ]
             ],
           part('py_class')
