@@ -35,4 +35,11 @@ class PyNamer {
 }
 
 // custom <part py_namer>
+
+nameFunction(id) => pyNamer.nameFunction(id);
+nameMethod(id) => pyNamer.nameMethod(id);
+nameAttribute(id, [NamingStyle namingStyle = public]) => pyNamer.nameAttribute(id, namingStyle);
+nameConstant(id) => pyNamer.nameConstant(id);
+nameClass(id) => pyNamer.nameClass(id);
+
 // end <part py_namer>

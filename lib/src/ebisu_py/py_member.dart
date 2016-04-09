@@ -9,6 +9,12 @@ class Member extends PyEntity {
   /// Variable name derived from *id*
   String get vname => _vname;
 
+  /// If true member is class variable
+  bool get isStatic => _isStatic;
+
+  /// Docstring for the member
+  String get doc => _doc;
+
   // custom <class Member>
 
   Member(id) : super(id) {
@@ -29,6 +35,8 @@ class Member extends PyEntity {
   /// Optional type for the member
   String _type;
   String _vname;
+  bool _isStatic = false;
+  String _doc;
 }
 
 // custom <part py_member>

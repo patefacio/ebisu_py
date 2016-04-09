@@ -30,6 +30,17 @@ main([List<String> args]) {
     expect(namer.nameAttribute(sampleId), 'one_two_three');
     expect(namer.nameAttribute(sampleId, internal), '_one_two_three');
     expect(namer.nameAttribute(sampleId, private), '__one_two_three');
+
+    expect(nameFunction(sampleId), 'one_two_three');
+    expect(nameMethod(sampleId), 'one_two_three');
+    expect(nameAttribute(sampleId), 'one_two_three');
+    expect(nameAttribute(sampleId, internal), '_one_two_three');
+    expect(nameAttribute(sampleId, private), '__one_two_three');
+
+  });
+
+  test('library namer', () {
+    expect(pyNamer == null, false);
   });
 
 // end <main>

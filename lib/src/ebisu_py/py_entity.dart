@@ -42,4 +42,10 @@ class Module extends Object with Entity {
 }
 
 // custom <part py_entity>
+
+
+var _pyNamer = new PyNamer();
+get pyNamer => _pyNamer;
+set pyNamer(PyNamer pyNamer) => _pyNamer = pyNamer;
+
 // end <part py_entity>

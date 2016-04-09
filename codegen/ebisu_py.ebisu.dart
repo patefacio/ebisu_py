@@ -30,106 +30,82 @@ void main() {
     ].map((l) => l..imports.add('../lib/ebisu_py.dart')).toList())
     ..libraries = [
       library('ebisu_py')
-      ..defaultMemberAccess = RO
-      ..imports = [
-        'package:id/id.dart',
-        'package:ebisu/ebisu.dart',
-      ]
-      ..parts = [
-
-        part('py_core')
-        ..enums = [
-          enum_('access')
-          ..doc = 'Set of access directives for members'
-          ..values = [
-            enumValue('ro')..doc = 'Read only',
-            enumValue('rw')..doc = 'Read/write - effectively public',
-            enumValue('wo')..doc = 'Write accessor but no read accessor',
-            enumValue('ia')..doc = 'Inaccessible',
-          ]
-        ],
-
-        part('py_namer')
-        ..enums = [
-          enum_('naming_style')
-          ..hasLibraryScopedValues = true
-          ..values = [
-            'public',
-            'internal',
-            'private',
-          ]
-        ]
-        ..classes = [
-          class_('py_namer'),
-        ],
-
-        part('py_entity')
-        ..classes = [
-
-          class_('py_entity')
-          ..doc = 'Used to establish the tree of all python entities'
-          ..mixins = [ 'Entity' ]
-          ..isAbstract = true
-          ..members = [
-            member('id')
-            ..type = 'Id'
-          ],
-
-          class_('installation')
-          ..doc = 'Top level entity for python code generation'
-          ..mixins = [ 'Entity' ]
-          ..members = [
-            member('packages')
-            ..type = 'List<Package>'..classInit = [],
-          ],
-
-          class_('package')
-          ..mixins = [ 'Entity' ]
-          ..members = [
-            member('modules')..classInit = [],
-          ],
-
-          class_('module')
-          ..mixins = [ 'Entity' ]
-          ..members = [
-            member('classes')..classInit = [],
-          ],
-
-        ],
-
-        part('py_member')
-        ..classes = [
-          class_('member')
-          ..doc = '''
+        ..defaultMemberAccess = RO
+        ..imports = ['package:id/id.dart', 'package:ebisu/ebisu.dart',]
+        ..parts = [
+          part('py_core')
+            ..enums = [
+              enum_('access')
+                ..doc = 'Set of access directives for members'
+                ..values = [
+                  enumValue('ro')..doc = 'Read only',
+                  enumValue('rw')..doc = 'Read/write - effectively public',
+                  enumValue('wo')..doc = 'Write accessor but no read accessor',
+                  enumValue('ia')..doc = 'Inaccessible',
+                ]
+            ],
+          part('py_namer')
+            ..enums = [
+              enum_('naming_style')
+                ..hasLibraryScopedValues = true
+                ..values = ['public', 'internal', 'private',]
+            ]
+            ..classes = [class_('py_namer'),],
+          part('py_entity')
+            ..classes = [
+              class_('py_entity')
+                ..doc = 'Used to establish the tree of all python entities'
+                ..mixins = ['Entity']
+                ..isAbstract = true
+                ..members = [member('id')..type = 'Id'],
+              class_('installation')
+                ..doc = 'Top level entity for python code generation'
+                ..mixins = ['Entity']
+                ..members = [
+                  member('packages')
+                    ..type = 'List<Package>'
+                    ..classInit = [],
+                ],
+              class_('package')
+                ..mixins = ['Entity']
+                ..members = [member('modules')..classInit = [],],
+              class_('module')
+                ..mixins = ['Entity']
+                ..members = [member('classes')..classInit = [],],
+            ],
+          part('py_member')
+            ..classes = [
+              class_('member')
+                ..doc = '''
 An accessible data item in a class.
 '''
-          ..extend = 'PyEntity'
-          ..members = [
-            member('init')
-            ..doc = 'Initialization for the member',
-            member('access')
-            ..type = 'Access',
-            member('type')
-            ..access = IA
-            ..doc = 'Optional type for the member',
-            member('vname')
-            ..doc = 'Variable name derived from *id*',
-          ]
+                ..extend = 'PyEntity'
+                ..members = [
+                  member('init')..doc = 'Initialization for the member',
+                  member('access')..type = 'Access',
+                  member('type')
+                    ..access = IA
+                    ..doc = 'Optional type for the member',
+                  member('vname')..doc = 'Variable name derived from *id*',
+                  member('is_static')
+                    ..doc = 'If true member is class variable'
+                    ..init = false,
+                  member('doc')..doc = 'Docstring for the member',
+                ]
+            ],
+          part('py_class')
+            ..classes = [
+              class_('class')
+                ..doc = 'A python class'
+                ..extend = 'PyEntity'
+                ..members = [
+                  member('members')
+                    ..doc = 'The members of the class'
+                    ..type = 'List<Members>'
+                    ..classInit = [],
+                ]
+            ],
         ],
-
-        part('py_class')
-        ..classes = [
-          class_('class')
-          ..doc = 'A python class'
-          ..extend = 'PyEntity'
-          ..members = [
-            member('members')
-            ..doc = 'The members of the class'
-            ..type = 'List<Members>'..classInit = [],
-          ]
-        ],
-
-      ],
     ];
 
   ebisu.generate();
