@@ -15,8 +15,11 @@ void main(List<String> args) {
   //TODO: Figure this out: addTask('docs', createDocGenTask(_getLibs));
   addTask(
       'analyze_test',
-      createAnalyzerTask(
-          ["test/test_member.dart", "test/test_codeblock.dart"]));
+      createAnalyzerTask([
+        "test/test_namer.dart",
+        "test/test_member.dart",
+        "test/test_codeblock.dart"
+      ]));
 
   runHop(args);
 }

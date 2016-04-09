@@ -10,6 +10,7 @@ part 'src/ebisu_py/py_class.dart';
 part 'src/ebisu_py/py_core.dart';
 part 'src/ebisu_py/py_entity.dart';
 part 'src/ebisu_py/py_member.dart';
+part 'src/ebisu_py/py_namer.dart';
 
 // custom <library ebisu_py>
 

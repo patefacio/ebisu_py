@@ -24,6 +24,7 @@ void main() {
     ..rootPath = _topDir
     ..doc = 'Support library for generating python code'
     ..testLibraries = ([
+      library('test_namer'),
       library('test_member'),
       library('test_codeblock'),
     ].map((l) => l..imports.add('../lib/ebisu_py.dart')).toList())
@@ -46,6 +47,20 @@ void main() {
             enumValue('wo')..doc = 'Write accessor but no read accessor',
             enumValue('ia')..doc = 'Inaccessible',
           ]
+        ],
+
+        part('py_namer')
+        ..enums = [
+          enum_('naming_style')
+          ..hasLibraryScopedValues = true
+          ..values = [
+            'public',
+            'internal',
+            'private',
+          ]
+        ]
+        ..classes = [
+          class_('py_namer'),
         ],
 
         part('py_entity')
