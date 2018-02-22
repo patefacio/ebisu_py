@@ -12,7 +12,9 @@ class Class extends PyEntity {
     _name = nameClass(_id);
   }
 
-  get definition => brCompact(['class $name:',]);
+  get definition => brCompact([
+        'class $name:',
+      ]);
 
   // end <class Class>
 

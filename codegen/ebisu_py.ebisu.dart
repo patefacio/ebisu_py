@@ -17,7 +17,6 @@ void main() {
   useDartFormatter = true;
   _topDir = path.dirname(path.dirname(here));
   System ebisu = system('ebisu_py')
-    ..includesHop = true
     ..license = 'boost'
     ..pubSpec.homepage = 'https://github.com/patefacio/ebisu_py'
     ..pubSpec.version = '0.0.1'

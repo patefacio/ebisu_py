@@ -7,15 +7,17 @@ import 'package:test/test.dart';
 // custom <additional imports>
 // end <additional imports>
 
-final _logger = new Logger('test_class');
+final Logger _logger = new Logger('test_class');
 
 // custom <library test_class>
 // end <library test_class>
 
-main([List<String> args]) {
-  Logger.root.onRecord.listen(
-      (LogRecord r) => print("${r.loggerName} [${r.level}]:\t${r.message}"));
-  Logger.root.level = Level.OFF;
+void main([List<String> args]) {
+  if (args?.isEmpty ?? false) {
+    Logger.root.onRecord.listen(
+        (LogRecord r) => print("${r.loggerName} [${r.level}]:\t${r.message}"));
+    Logger.root.level = Level.OFF;
+  }
 // custom <main>
 
   test('class basics', () {

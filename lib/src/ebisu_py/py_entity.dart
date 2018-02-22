@@ -40,7 +40,9 @@ class Module extends Object with Entity {
 
   // custom <class Module>
 
-  get definition => brCompact([classes.map((c) => c.definition),]);
+  get definition => brCompact([
+        classes.map((c) => c.definition),
+      ]);
 
   // end <class Module>
 
